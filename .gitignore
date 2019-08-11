@@ -61,4 +61,4 @@ typings/
 .next
 
 # ignore config keys
-keys.js
+config.js

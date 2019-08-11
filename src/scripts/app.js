@@ -5,6 +5,9 @@ import * as authenticate from './authenticate.js';
 import * as post from './post.js';
 import * as retrieve from './retrieve.js';
 
+import { config } from './config.js';
+firebase.initializeApp(config);
+
 if (location.pathname === '/pages/signup.html') {
   validate.fName.oninput = validate.validateFName;
   validate.lName.oninput = validate.validateLName;
