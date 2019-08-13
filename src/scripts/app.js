@@ -68,9 +68,9 @@ firebase.auth().onAuthStateChanged(user => {
     ) {
       validate.userMenu.style.display = 'none';
       validate.loginMenu.style.display = 'block';
-      document
-        .getElementById('sellNow')
-        .setAttribute('href', './pages/login.html');
+      // document
+      //   .getElementById('sellNow')
+      //   .setAttribute('href', './pages/login.html');
     }
     console.log('Logged out');
   }
@@ -94,23 +94,23 @@ if (location.pathname === '/' || location.pathname === '/index.html') {
   window.onload = setTimeout(retrieve.favorites, 600);
 }
 
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/service-worker.js').then(
-      registration => {
-        // Registration was successful
-        console.log(
-          'ServiceWorker registration successful with scope: ',
-          registration.scope
-        );
-      },
-      error => {
-        // registration failed :(
-        console.log('ServiceWorker registration failed: ', error);
-      }
-    );
-  });
-}
+// if ('serviceWorker' in navigator) {
+//   window.addEventListener('load', () => {
+//     navigator.serviceWorker.register('/service-worker.js').then(
+//       registration => {
+//         // Registration was successful
+//         console.log(
+//           'ServiceWorker registration successful with scope: ',
+//           registration.scope
+//         );
+//       },
+//       error => {
+//         // registration failed :(
+//         console.log('ServiceWorker registration failed: ', error);
+//       }
+//     );
+//   });
+// }
 
 // if (navigator.onLine) {
 //     alert("Online");
@@ -118,82 +118,82 @@ if ('serviceWorker' in navigator) {
 //     alert("Offline");
 // }
 
-let appBtn = document.getElementById('app');
-let deferredPrompt;
-window.addEventListener('beforeinstallprompt', event => {
-  // Prevent Chrome 67 and earlier from automatically showing the prompt
-  // event.preventDefault();
-  // Stash the event so it can be triggered later.
-  deferredPrompt = event;
-  if (location.pathname === '/' || location.pathname === '/index.html') {
-    appBtn.addEventListener('click', e => {
-      appBtn.className = 'd-none';
-      deferredPrompt.prompt();
-      deferredPrompt.userChoice.then(choiceResult => {
-        if (choiceResult.outcome === 'accepted') {
-          console.log('User accepted the A2HS prompt');
-        } else {
-          console.log('User dismissed the A2HS prompt');
-          appBtn.className = 'btn btn-primary ml-3 position-fixed';
-        }
-        deferredPrompt = null;
-      });
-    });
-  }
-});
+// let appBtn = document.getElementById('app');
+// let deferredPrompt;
+// window.addEventListener('beforeinstallprompt', event => {
+//   // Prevent Chrome 67 and earlier from automatically showing the prompt
+//   // event.preventDefault();
+//   // Stash the event so it can be triggered later.
+//   deferredPrompt = event;
+//   if (location.pathname === '/' || location.pathname === '/index.html') {
+//     appBtn.addEventListener('click', e => {
+//       appBtn.className = 'd-none';
+//       deferredPrompt.prompt();
+//       deferredPrompt.userChoice.then(choiceResult => {
+//         if (choiceResult.outcome === 'accepted') {
+//           console.log('User accepted the A2HS prompt');
+//         } else {
+//           console.log('User dismissed the A2HS prompt');
+//           appBtn.className = 'btn btn-primary ml-3 position-fixed';
+//         }
+//         deferredPrompt = null;
+//       });
+//     });
+//   }
+// });
 
 // window.addEventListener("appinstalled", e => {
 //     // console.log(e);
 // });
 
-if (window.matchMedia('(display-mode: standalone)').matches) {
-  console.log('display-mode is standalone');
-  if (location.pathname === '/' || location.pathname === '/index.html') {
-    appBtn.className = 'd-none';
-  }
-} else if (!window.matchMedia('(display-mode: standalone)').matches) {
-  console.log('display-mode is not standalone');
-  if (location.pathname === '/' || location.pathname === '/index.html') {
-    appBtn.className = 'btn btn-primary ml-3 position-fixed';
-  }
-}
+// if (window.matchMedia('(display-mode: standalone)').matches) {
+//   console.log('display-mode is standalone');
+//   if (location.pathname === '/' || location.pathname === '/index.html') {
+//     appBtn.className = 'd-none';
+//   }
+// } else if (!window.matchMedia('(display-mode: standalone)').matches) {
+//   console.log('display-mode is not standalone');
+//   if (location.pathname === '/' || location.pathname === '/index.html') {
+//     appBtn.className = 'btn btn-primary ml-3 position-fixed';
+//   }
+// }
 
-Notification.requestPermission(status => {
-  console.log('Notification permission status:', status);
-});
+// Notification.requestPermission(status => {
+//   console.log('Notification permission status:', status);
+// });
 
-function displayNotification() {
-  if (Notification.permission === 'granted') {
-    navigator.serviceWorker.getRegistration().then(reg => {
-      const options = {
-        body: 'Here is a notification body!',
-        icon: '../images/favicons/android-chrome-192x192.png',
-        vibrate: [100, 50, 100],
-        data: {
-          dateOfArrival: Date.now(),
-          primaryKey: 1
-        },
-        actions: [
-          {
-            action: 'explore',
-            title: 'Explore this new world',
-            icon: '../images/icons/navigation.png'
-          },
-          {
-            action: 'close',
-            title: 'Close notification',
-            icon: '../images/icons/cancel.png'
-          }
-        ]
-      };
-      reg.showNotification('Hello world!', options);
-    });
-  } else if (Notification.permission == 'denied') {
-    alert('Allow push notifications first.');
-    let res =
-      'Notifications permission has been blocked as the user has dismissed the permission prompt several times.\nThis can be reset in Page Info which can be accessed by clicking the lock icon next to the URL.';
-  }
-}
+// function displayNotification() {
+//   if (Notification.permission === 'granted') {
+//     navigator.serviceWorker.getRegistration().then(reg => {
+//       const options = {
+//         body: 'Here is a notification body!',
+//         icon: '../images/favicons/android-chrome-192x192.png',
+//         vibrate: [100, 50, 100],
+//         data: {
+//           dateOfArrival: Date.now(),
+//           primaryKey: 1
+//         },
+//         actions: [
+//           {
+//             action: 'explore',
+//             title: 'Explore this new world',
+//             icon: '../images/icons/navigation.png'
+//           },
+//           {
+//             action: 'close',
+//             title: 'Close notification',
+//             icon: '../images/icons/cancel.png'
+//           }
+//         ]
+//       };
+//       reg.showNotification('Hello world!', options);
+//     });
+//   } else if (Notification.permission == 'denied') {
+//     alert('Allow push notifications first.');
+//     let res =
+//       'Notifications permission has been blocked as the user has dismissed the permission prompt several times.\nThis can be reset in Page Info which can be accessed by clicking the lock icon next to the URL.';
+//   }
+// }
 
-let notify = document.getElementById('notify');
-notify.onclick = displayNotification;
+// let notify = document.getElementById('notify');
+// notify.onclick = displayNotification;

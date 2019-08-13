@@ -41,14 +41,78 @@
           <ul class="navbar-nav mr-auto">
             <br />
           </ul>
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link h4 mr-3" href="./pages/login.html">Log in</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link h4 mr-3" href="./pages/signup.html">Sign up</a>
-            </li>
-          </ul>
+
+          <div id="loginMenu">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link h4 mr-3" href="./pages/login.html">Log in</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link h4 mr-3" href="./pages/signup.html"
+                  >Sign up</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div id="userMenu" class="dropdown">
+            <div
+              id="dropdownMenu"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <img
+                id="profile-pic"
+                src="./images/icons/user.png"
+                alt="user"
+                height="42px"
+                width="42px"
+              />
+            </div>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu">
+              <a
+                id="userName"
+                class="dropdown-item drop-hover disabled"
+                href="javascript:void(0)"
+                >userName</a
+              >
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item drop-hover" href="./pages/profile.html">
+                <img
+                  src="./images/icons/profile.png"
+                  height="16px"
+                  width="16px"
+                />
+                My Profile
+              </a>
+              <a class="dropdown-item drop-hover" href="./pages/my-ads.html">
+                <img src="./images/icons/ad.png" height="16px" width="16px" />
+                My Ads
+              </a>
+              <a class="dropdown-item drop-hover" href="./pages/favorites.html">
+                <img src="./images/icons/star.png" height="16px" width="16px" />
+                Favorites
+              </a>
+              <a class="dropdown-item drop-hover" href="./pages/setting.html">
+                <img
+                  src="./images/icons/settings-work-tool.png"
+                  height="16px"
+                  width="16px"
+                />
+                Setting
+              </a>
+              <div class="dropdown-divider"></div>
+              <a id="logout-button" class="dropdown-item drop-hover">
+                <img
+                  src="./images/icons/logout.png"
+                  height="16px"
+                  width="16px"
+                />
+                Log out
+              </a>
+            </div>
+          </div>
         </div>
       </nav>
     </header>
@@ -63,6 +127,7 @@
         <div class="jumbotron shadow-sm">
           <div class="input-group mb-4">
             <input
+              id="search-input"
               type="text"
               style="border-radius: 50px"
               class="form-control form-control-lg"
@@ -72,6 +137,7 @@
             />
             <div class="input-group-append ml-2">
               <button
+                id="search-btn"
                 style="border-radius: 50px"
                 class="btn btn-info"
                 type="button"
@@ -87,7 +153,7 @@
             style="border-radius: 50px"
             class="form-control form-control-lg"
           >
-            <option selected disabled>BROWSE BY CATEGORY</option>
+            <option value="all" selected disabled>BROWSE BY CATEGORY</option>
             <option value="all">All Categories</option>
             <option value="mobiles">Mobiles</option>
             <option value="computers">Computers</option>
@@ -110,14 +176,18 @@
       </div>
     </main>
 
+    <div>
+      <div id="data-box" class="container"></div>
+    </div>
+
     <!-- Bootstrap Dependencies -->
     <script src="./libraries/bootstrap-4.3.1/js/jquery-3.4.1.slim.min.js"></script>
     <script src="./libraries/bootstrap-4.3.1/js/bootstrap.bundle.min.js"></script>
 
     <!-- Firebase SDK -->
-    <!-- <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-database.js"></script> -->
+    <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-database.js"></script>
 
     <!-- App JS -->
     <script src="./scripts/app.js" type="module"></script>
