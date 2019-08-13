@@ -20,6 +20,7 @@ let userMenu = document.getElementById('userMenu');
 let profilePic = document.getElementById('profile-pic');
 let userName = document.getElementById('userName');
 let logoutB = document.getElementById('logout-button');
+let authError = document.getElementById('auth-error');
 
 /**
  * Feedback elements
@@ -204,7 +205,8 @@ export {
   userMenu,
   profilePic,
   userName,
-  logoutB
+  logoutB,
+  authError
 };
 export {
   validateFName,

@@ -1,10 +1,20 @@
 'use strict';
 
-import { fName, lName, email, password, signupB, loginB } from './validate.js';
+import {
+  fName,
+  lName,
+  email,
+  password,
+  signupB,
+  loginB,
+  authError
+} from './validate.js';
 
 // Firebase Authentication Methods
 
 function signUp(validateForm) {
+  authError.style.display = 'none';
+
   if (!validateForm()) {
     return false;
   }
@@ -54,11 +64,14 @@ function signUp(validateForm) {
       const errorMessage = error.message;
       console.log(errorMessage);
 
+      authError.style.display = 'block';
       signupB.className = 'btn btn-primary btn-lg btn-block';
     });
 }
 
 function signIn(validateForm) {
+  authError.style.display = 'none';
+
   if (!validateForm()) {
     return false;
   }
@@ -82,6 +95,7 @@ function signIn(validateForm) {
       var errorMessage = error.message;
       console.log(errorMessage);
 
+      authError.style.display = 'block';
       loginB.className = 'btn btn-primary btn-lg btn-block';
     });
 }

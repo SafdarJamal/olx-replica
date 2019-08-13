@@ -57,6 +57,21 @@
             <h1 class="card-header text-center">Log in</h1>
           </div>
           <div class="card-body">
+            <div
+              id="auth-error"
+              class="alert alert-warning alert-dismissible fade show"
+              role="alert"
+            >
+              <strong>Error!</strong> Email or password is incorrect.
+              <button
+                type="button"
+                class="close"
+                data-dismiss="alert"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
             <form id="form">
               <div class="form-group">
                 <label for="email">Email</label>

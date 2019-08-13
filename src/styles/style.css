@@ -102,3 +102,7 @@ body {
 .fb-btn {
   background-color: #3b5998;
 }
+
+#auth-error {
+  display: none;
+}
