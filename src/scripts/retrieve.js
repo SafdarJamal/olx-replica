@@ -62,7 +62,7 @@ function retrieveData() {
             `;
 
             const card = document.createElement('div');
-            card.setAttribute('class', 'col-4 mb-4');
+            card.setAttribute('class', 'col-md-4 mb-4');
             card.innerHTML = cardContent;
             mainDiv.append(card);
 
@@ -73,32 +73,39 @@ function retrieveData() {
           });
         } else {
           const keys = Object.keys(data);
+
+          const formatter = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+            minimumFractionDigits: null
+          });
+
           let mainDiv = document.getElementById('data-box');
           mainDiv.innerHTML = '';
+
           keys.forEach(key => {
-            // console.log(data[key]);
             let obj = data[key];
+            // console.log(data[key]);
+
+            const cardContent = `
+              <div class="card">
+                <img src="${obj.photoURL}" class="card-img-top" />
+                <div class="card-body">
+                  <h5 class="card-title">${formatter.format(obj.price)}</h5>
+                  <h6 class="card-title">${obj.title}</h6>
+                  <p class="card-text">${obj.description}</p>
+                  <button id="${
+                    obj.key
+                  }" class="btn btn-info">Add to favourites</button>
+                </div>
+              </div>
+            `;
+
             const card = document.createElement('div');
-            card.setAttribute('class', 'card shadow rounded mb-5 col-md-6');
-            const cardContent = `<img src="${
-              obj.photoURL
-            }" class="card-img-top">
-                                    <div class="card-body">
-                                        <h4 class="card-title mb-3">Rs ${
-                                          obj.price
-                                        }</h4>
-                                        <h5 class="card-subtitle mb-3">${
-                                          obj.title
-                                        }</h5>
-                                        <p class="card-text">${
-                                          obj.description
-                                        }</p>
-                                        <button type="button" id="${
-                                          obj.key
-                                        }" class="btn btn-outline-info">Save for later</button>
-                                    </div>`;
+            card.setAttribute('class', 'col-md-4 mb-4');
             card.innerHTML = cardContent;
             mainDiv.append(card);
+
             let btn = document.getElementById(obj.key);
             btn.addEventListener('click', () => {
               saveAd(obj, btn);
