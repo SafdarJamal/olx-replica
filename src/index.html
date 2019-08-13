@@ -55,8 +55,15 @@
 
     <main>
       <div id="main-box" class="container">
-        <div class="jumbotron shadow-sm">
-          <h1 class="display-4">Hello World!</h1>
+        <div
+          class="jumbotron shadow-sm"
+          style="background-image: url(./images/hero-bg-pk.jpg);height: 245px"
+        >
+          <!-- <img src="./images/hero-bg-i.jpg" alt="" />
+          <h1 class="display-4 text-uppercase text-center">
+            Worlds No.1 Marketplace <br />
+            for Buying and Selling
+          </h1>
           <p class="lead">
             This is a simple hero unit, a simple jumbotron-style component for
             calling extra attention to featured content or information.
@@ -65,11 +72,68 @@
           <p>
             It uses utility classes for typography and spacing to space content
             out within the larger container.
-          </p>
+          </!
           <a
             class="btn btn-primary btn-lg"
             href="./pages/login.html"
             role="button"
+            >Start Selling</a
+          > -->
+        </div>
+
+        <div class="jumbotron shadow-sm">
+          <!-- <h1 class="text-uppercase text-center">
+            Buy, sell and find just about anything
+          </h1> -->
+          <!-- <br /><br /> -->
+
+          <div>
+            <select
+              id="search-category"
+              style="border-radius: 12px"
+              class="form-control form-control-lg"
+            >
+              <option disabled>BROWSE BY CATEGORY</option>
+              <option selected value="all">All Categories</option>
+              <option value="mobiles">Mobiles</option>
+              <option value="computers">Computers</option>
+              <option value="vehicles">Vehicles</option>
+              <option value="properties">Property for Sale</option>
+              <option value="electronics">Electronics & Home Appliances</option>
+              <option value="fashion">Fashion & Beauty</option>
+              <option value="booksAndSports">Books & Sports</option>
+            </select>
+
+            <br />
+
+            <div class="input-group mb-3">
+              <input
+                type="text"
+                style="border-radius: 50px"
+                class="form-control form-control-lg"
+                placeholder="Find Cars, Mobile Phones and more..."
+                aria-label="Recipient's username"
+                aria-describedby="button-addon2"
+              />
+              <div class="input-group-append ml-2">
+                <button
+                  style="border-radius: 50px"
+                  class="btn btn-info"
+                  type="button"
+                  id="button-addon2"
+                >
+                  Search
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <hr class="my-4" />
+          <p>
+            Want to see your stuff here?
+          </p>
+
+          <a class="btn btn-info btn-lg" href="./pages/login.html" role="button"
             >Start Selling</a
           >
         </div>
