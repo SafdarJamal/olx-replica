@@ -6,10 +6,77 @@ body {
   margin-top: 150px;
 }
 
+/* ---------- Header ---------- */
+.drop-hover:hover,
+#logout-button:hover {
+  color: white;
+  background-color: #1287a5;
+}
+
+#profile-pic {
+  margin-right: 125px;
+  cursor: pointer;
+}
+
+#userMenu {
+  display: none;
+}
+
+#userName {
+  font-weight: 500;
+  color: black;
+}
+
+#logout-button {
+  cursor: pointer;
+}
+
 /* ---------- Forms ---------- */
+.positive {
+  border-color: #28a745;
+  padding-right: 2.25rem;
+  background-repeat: no-repeat;
+  background-position: center right calc(2.25rem / 4);
+  background-size: calc(2.25rem / 2) calc(2.25rem / 2);
+  background-image: url('../images/icons/positive.svg');
+}
+
+.positive:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+
+.negative {
+  border-color: #dc3545;
+  padding-right: 2.25rem;
+  background-repeat: no-repeat;
+  background-position: center right calc(2.25rem / 4);
+  background-size: calc(2.25rem / 2) calc(2.25rem / 2);
+  background-image: url('../images/icons/negative.svg');
+}
+.negative:focus {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+.feedback {
+  display: none;
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 80%;
+  color: #dc3545;
+}
+
+.now-invalid {
+  display: block;
+}
 
 #show-hide {
   line-height: 1.3;
+}
+
+.or {
+  margin: 4px;
 }
 
 .fb-icon {
@@ -18,6 +85,10 @@ body {
   position: absolute;
   bottom: 74px;
   left: 28px;
+}
+
+#fb-login {
+  background-color: #3b5998;
 }
 
 @media only screen and (max-width: 360px) {

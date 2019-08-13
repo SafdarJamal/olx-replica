@@ -44,9 +44,6 @@ firebase.auth().onAuthStateChanged(user => {
         validate.profilePic.src = user.photoURL;
         validate.profilePic.setAttribute('class', 'rounded-circle');
       }
-      document
-        .getElementById('sellNow')
-        .setAttribute('href', './pages/post.html');
     }
     // console.log(user);
     console.log('Already logged in');
@@ -68,9 +65,9 @@ firebase.auth().onAuthStateChanged(user => {
     ) {
       validate.userMenu.style.display = 'none';
       validate.loginMenu.style.display = 'block';
-      // document
-      //   .getElementById('sellNow')
-      //   .setAttribute('href', './pages/login.html');
+      document
+        .getElementById('start-selling')
+        .setAttribute('href', './pages/login.html');
     }
     console.log('Logged out');
   }

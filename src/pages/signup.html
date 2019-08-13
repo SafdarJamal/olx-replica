@@ -69,14 +69,17 @@
                   autofocus
                   required
                 />
+                <div id="f-feedback" class="feedback"></div>
               </div>
               <div class="form-group">
                 <label for="lName">Last Name</label>
                 <input type="text" id="lName" class="form-control" required />
+                <div id="l-feedback" class="feedback"></div>
               </div>
               <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" id="email" class="form-control" required />
+                <div id="e-feedback" class="feedback"></div>
               </div>
               <div class="form-group">
                 <label for="password">Password</label>
@@ -86,6 +89,7 @@
                   class="form-control"
                   required
                 />
+                <div id="p-feedback" class="feedback"></div>
                 <button
                   type="button"
                   id="show-hide"
@@ -94,13 +98,18 @@
                   show
                 </button>
               </div>
-              <button type="button" class="btn btn-primary btn-lg btn-block">
+              <button
+                id="signup-button"
+                type="button"
+                class="btn btn-primary btn-lg btn-block"
+              >
                 SIGN ME UP
               </button>
               <div class="text-muted text-center m-1">OR</div>
               <div>
                 <img class="fb-icon" src="../images/icons/fb.png" />
                 <button
+                  id="fb-login"
                   type="button"
                   class="fb-btn btn btn-primary btn-lg btn-block"
                 >
@@ -120,7 +129,12 @@
     <script src="../libraries/bootstrap-4.3.1/js/jquery-3.4.1.slim.min.js"></script>
     <script src="../libraries/bootstrap-4.3.1/js/bootstrap.bundle.min.js"></script>
 
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-database.js"></script>
+
     <!-- Custom JS -->
-    <script src="../scripts/app.js"></script>
+    <script src="../scripts/app.js" type="module"></script>
   </body>
 </html>
