@@ -89,13 +89,18 @@
                   show
                 </button>
               </div>
-              <button type="button" class="btn btn-primary btn-lg btn-block">
+              <button
+                id="login-button"
+                type="button"
+                class="btn btn-primary btn-lg btn-block"
+              >
                 LOG ME IN
               </button>
               <div class="text-muted text-center m-1">OR</div>
               <div>
                 <img class="fb-icon" src="../images/icons/fb.png" />
                 <button
+                  id="fb-login"
                   type="button"
                   class="fb-btn btn btn-primary btn-lg btn-block"
                 >
@@ -115,7 +120,11 @@
     <script src="../libraries/bootstrap-4.3.1/js/jquery-3.4.1.slim.min.js"></script>
     <script src="../libraries/bootstrap-4.3.1/js/bootstrap.bundle.min.js"></script>
 
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-auth.js"></script>
+
     <!-- Custom JS -->
-    <script src="../scripts/app.js"></script>
+    <script src="../scripts/app.js" type="module"></script>
   </body>
 </html>
