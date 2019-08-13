@@ -56,7 +56,7 @@ function retrieveData() {
                   <p class="card-text">${obj.description}</p>
                   <button id="${
                     obj.key
-                  }" class="btn btn-info">Add to favourites</button>
+                  }" class="btn btn-info">Add to favorites</button>
                 </div>
               </div>
             `;
@@ -96,7 +96,7 @@ function retrieveData() {
                   <p class="card-text">${obj.description}</p>
                   <button id="${
                     obj.key
-                  }" class="btn btn-info">Add to favourites</button>
+                  }" class="btn btn-info">Add to favorites</button>
                 </div>
               </div>
             `;
