@@ -1,8 +1,8 @@
 'use strict';
 
-let searchCategory = document.getElementById('search-category');
-let searchV = document.getElementById('search-input');
-let searchB = document.getElementById('search-btn');
+const searchCategory = document.getElementById('search-category');
+const searchV = document.getElementById('search-input');
+const searchB = document.getElementById('search-btn');
 
 function retrieveData() {
   let field = searchCategory.value;
@@ -15,8 +15,6 @@ function retrieveData() {
       field = `ads/${searchCategory.value}/`;
       break;
   }
-
-  console.log(field);
 
   firebase
     .database()
@@ -32,36 +30,42 @@ function retrieveData() {
           // console.log(values);
 
           const arr = [];
-          let mainDiv = document.getElementById('data-box');
-          mainDiv.innerHTML = '';
           values.forEach(inObj => {
             let exArr = Object.values(inObj);
             exArr.forEach(gotObj => {
               arr.push(gotObj);
             });
           });
+
+          const formatter = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+            minimumFractionDigits: null
+          });
+
+          let mainDiv = document.getElementById('data-box');
+          mainDiv.innerHTML = '';
+
           arr.forEach(obj => {
+            const cardContent = `
+              <div class="card">
+                <img src="${obj.photoURL}" class="card-img-top" />
+                <div class="card-body">
+                  <h5 class="card-title">${formatter.format(obj.price)}</h5>
+                  <h6 class="card-title">${obj.title}</h6>
+                  <p class="card-text">${obj.description}</p>
+                  <button id="${
+                    obj.key
+                  }" class="btn btn-info">Add to favourites</button>
+                </div>
+              </div>
+            `;
+
             const card = document.createElement('div');
-            card.setAttribute('class', 'card shadow rounded mb-5 col-md-6');
-            const cardContent = `<img src="${
-              obj.photoURL
-            }" class="card-img-top">
-                                    <div class="card-body">
-                                        <h4 class="card-title mb-3">Rs ${
-                                          obj.price
-                                        }</h4>
-                                        <h5 class="card-subtitle mb-3">${
-                                          obj.title
-                                        }</h5>
-                                        <p class="card-text">${
-                                          obj.description
-                                        }</p>
-                                        <button type="button" id="${
-                                          obj.key
-                                        }" class="btn btn-outline-info">Save for later</button>
-                                    </div>`;
+            card.setAttribute('class', 'col-4 mb-4');
             card.innerHTML = cardContent;
             mainDiv.append(card);
+
             let btn = document.getElementById(obj.key);
             btn.addEventListener('click', () => {
               saveAd(obj, btn);
