@@ -94,23 +94,23 @@ if (location.pathname === '/' || location.pathname === '/index.html') {
   window.onload = setTimeout(retrieve.favorites, 900);
 }
 
-// if ('serviceWorker' in navigator) {
-//   window.addEventListener('load', () => {
-//     navigator.serviceWorker.register('/service-worker.js').then(
-//       registration => {
-//         // Registration was successful
-//         console.log(
-//           'ServiceWorker registration successful with scope: ',
-//           registration.scope
-//         );
-//       },
-//       error => {
-//         // registration failed :(
-//         console.log('ServiceWorker registration failed: ', error);
-//       }
-//     );
-//   });
-// }
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js').then(
+      registration => {
+        // Registration was successful
+        console.log(
+          'ServiceWorker registration successful with scope: ',
+          registration.scope
+        );
+      },
+      error => {
+        // registration failed :(
+        console.log('ServiceWorker registration failed: ', error);
+      }
+    );
+  });
+}
 
 // if (navigator.onLine) {
 //     alert("Online");
