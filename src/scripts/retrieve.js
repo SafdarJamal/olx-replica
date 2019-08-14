@@ -44,11 +44,12 @@ function retrieveData() {
           });
 
           let mainDiv = document.getElementById('data-box');
+          mainDiv.className = 'row';
           mainDiv.innerHTML = '';
 
           arr.forEach(obj => {
             const cardContent = `
-              <div class="card">
+              <div class="card shadow-sm">
                 <img src="${obj.photoURL}" class="card-img-top" />
                 <div class="card-body">
                   <h5 class="card-title">${formatter.format(obj.price)}</h5>
@@ -81,6 +82,7 @@ function retrieveData() {
           });
 
           let mainDiv = document.getElementById('data-box');
+          mainDiv.className = 'row';
           mainDiv.innerHTML = '';
 
           keys.forEach(key => {
@@ -153,7 +155,7 @@ function myAds() {
           // console.log(data[key]);
 
           const cardContent = `
-              <div class="card">
+              <div class="card shadow-sm">
                 <img src="${obj.photoURL}" class="card-img-top" />
                 <div class="card-body">
                   <h5 class="card-title">${formatter.format(obj.price)}</h5>
@@ -254,9 +256,11 @@ function searchAds() {
         mainDiv.innerHTML = '';
 
         arr.forEach(obj => {
-          if (field.toLowerCase() === obj.title.toLowerCase()) {
+          const filter = field.toLowerCase();
+
+          if (obj.title.toLowerCase().indexOf(filter) > -1) {
             const cardContent = `
-              <div class="card">
+              <div class="card shadow-sm">
                 <img src="${obj.photoURL}" class="card-img-top" />
                 <div class="card-body">
                   <h5 class="card-title">${formatter.format(obj.price)}</h5>
@@ -280,11 +284,14 @@ function searchAds() {
             });
           }
         });
+
+        console.log(mainDiv.textContent);
+
         if (mainDiv.textContent === '') {
-          mainDiv.textContent = 'Not found.';
-          mainDiv.className += ' display-3 mb-5';
+          mainDiv.textContent = 'Not found';
+          mainDiv.className = 'text-center display-3 mb-5';
         } else {
-          mainDiv.className = 'container';
+          mainDiv.className = 'row';
         }
       },
       error => {
@@ -323,7 +330,7 @@ function favorites() {
           // console.log(data[key]);
 
           const cardContent = `
-              <div class="card">
+              <div class="card shadow-sm">
                 <img src="${obj.photoURL}" class="card-img-top" />
                 <div class="card-body">
                   <h5 class="card-title">${formatter.format(obj.price)}</h5>
