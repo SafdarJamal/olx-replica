@@ -23,7 +23,7 @@ function retrieveData() {
       'value',
       snapshot => {
         const data = snapshot.val();
-        console.log(data);
+        // console.log(data);
 
         if (searchCategory.value === 'all') {
           const values = Object.values(data);
@@ -73,8 +73,6 @@ function retrieveData() {
             });
           });
         } else {
-          const keys = Object.keys(data);
-
           const formatter = new Intl.NumberFormat('en-US', {
             style: 'currency',
             currency: 'USD',
@@ -85,6 +83,7 @@ function retrieveData() {
           mainDiv.className = 'row';
           mainDiv.innerHTML = '';
 
+          const keys = Object.keys(data);
           keys.forEach(key => {
             let obj = data[key];
             // console.log(data[key]);
@@ -117,6 +116,7 @@ function retrieveData() {
       },
       error => {
         console.log(error);
+
         let mainDiv = document.getElementById('data-box');
         mainDiv.className += ' display-4';
         mainDiv.textContent = 'Refresh this page to sea ads.';
@@ -132,7 +132,7 @@ function myAds() {
       'value',
       snapshot => {
         const data = snapshot.val();
-        console.log(data);
+        // console.log(data);
 
         let mainDiv = document.getElementById('data-box');
         mainDiv.innerHTML = '';
@@ -179,6 +179,7 @@ function myAds() {
       },
       error => {
         console.log(error);
+
         let mainDiv = document.getElementById('data-box');
         mainDiv.className += ' display-4';
         mainDiv.textContent = 'Refresh this page to sea ads.';
@@ -284,8 +285,6 @@ function searchAds() {
             });
           }
         });
-
-        console.log(mainDiv.textContent);
 
         if (mainDiv.textContent === '') {
           mainDiv.textContent = 'Not found';

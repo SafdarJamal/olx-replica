@@ -32,6 +32,9 @@ if (location.pathname === '/pages/signup.html') {
   });
 } else if (location.pathname === '/pages/reset-password.html') {
   validate.email.oninput = validate.validateEmail;
+  validate.passwordResetB.addEventListener('click', () => {
+    authenticate.resetPassword(validate.validateEmail);
+  });
 }
 
 firebase.auth().onAuthStateChanged(user => {
@@ -86,9 +89,9 @@ if (location.pathname === '/' || location.pathname === '/index.html') {
   post.adCategory.onchange = post.catChange;
   post.postB.onclick = post.postAd;
 } else if (location.pathname === '/pages/my-ads.html') {
-  window.onload = setTimeout(retrieve.myAds, 600);
+  window.onload = setTimeout(retrieve.myAds, 900);
 } else if (location.pathname === '/pages/favorites.html') {
-  window.onload = setTimeout(retrieve.favorites, 600);
+  window.onload = setTimeout(retrieve.favorites, 900);
 }
 
 // if ('serviceWorker' in navigator) {

@@ -1,9 +1,5 @@
 'use strict';
 
-/**
- * Post Ads
- */
-
 let adCategory = document.getElementById('ad-category');
 let title = document.getElementById('title');
 let description = document.getElementById('description');
@@ -70,6 +66,7 @@ function postAd() {
       .then(url => {
         ad.photoURL = url;
         // console.log(ad);
+
         const key = firebase
           .database()
           .ref(`users/${firebase.auth().currentUser.uid}/myAds/`)
@@ -82,6 +79,7 @@ function postAd() {
               console.log('My Ad Successfully Posted');
             }
           }).key;
+
         ad.key = key;
       })
       .then(() => {
@@ -101,7 +99,6 @@ function postAd() {
       })
       .catch(error => {
         console.log(error);
-
         postB.className = 'btn btn-info btn-lg btn-block';
       });
   });

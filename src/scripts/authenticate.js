@@ -7,6 +7,7 @@ import {
   password,
   signupB,
   loginB,
+  passwordResetB,
   authError
 } from './validate.js';
 
@@ -54,7 +55,7 @@ function signUp(validateForm) {
             console.log(error);
           } else {
             // Data saved successfully!
-            location.replace('http://localhost:8080/');
+            location.pathname = '/';
           }
         });
     })
@@ -65,7 +66,7 @@ function signUp(validateForm) {
       console.log(errorMessage);
 
       authError.style.display = 'block';
-      signupB.className = 'btn btn-primary btn-lg btn-block';
+      signupB.className = 'btn btn-info btn-lg btn-block';
     });
 }
 
@@ -87,7 +88,7 @@ function signIn(validateForm) {
     .signInWithEmailAndPassword(email.value, password.value)
     .then(success => {
       // console.log(success.user);
-      location.replace('http://localhost:8080/');
+      location.pathname = '/';
     })
     .catch(error => {
       // Handle Errors here.
@@ -96,7 +97,7 @@ function signIn(validateForm) {
       console.log(errorMessage);
 
       authError.style.display = 'block';
-      loginB.className = 'btn btn-primary btn-lg btn-block';
+      loginB.className = 'btn btn-info btn-lg btn-block';
     });
 }
 
@@ -119,7 +120,7 @@ function fbLogin() {
             console.log(error);
           } else {
             console.log('Success');
-            location.replace('http://localhost:8080/');
+            location.pathname = '/';
           }
         });
     })
@@ -133,13 +134,40 @@ function fbLogin() {
     });
 }
 
+function resetPassword(validateEmail) {
+  if (!validateEmail()) {
+    return false;
+  }
+
+  if (passwordResetB.classList.contains('disabled')) {
+    return false;
+  } else {
+    passwordResetB.className += ' disabled';
+  }
+
+  firebase
+    .auth()
+    .sendPasswordResetEmail(email.value)
+    .then(() => {
+      alert('Password reset link has been sent to your email.');
+      passwordResetB.className = 'btn btn-info btn-lg btn-block';
+    })
+    .catch(error => {
+      alert(error.message);
+      passwordResetB.className = 'btn btn-info btn-lg btn-block';
+    });
+}
+
 function logOut() {
   firebase
     .auth()
     .signOut()
+    .then(() => {
+      location.pathname = '/pages/login.html';
+    })
     .catch(error => {
       console.log(error);
     });
 }
 
-export { signUp, signIn, fbLogin, logOut };
+export { signUp, signIn, fbLogin, resetPassword, logOut };
