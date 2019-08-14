@@ -130,33 +130,46 @@ function myAds() {
       'value',
       snapshot => {
         const data = snapshot.val();
+        console.log(data);
+
         let mainDiv = document.getElementById('data-box');
+        mainDiv.innerHTML = '';
+
         if (!data) {
           mainDiv.className += ' display-4';
           mainDiv.textContent = 'You dont have any ads.';
           return false;
         }
-        mainDiv.innerHTML = '';
+
+        const formatter = new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD',
+          minimumFractionDigits: null
+        });
+
         const keys = Object.keys(data);
         keys.forEach(key => {
-          // console.log(data[key]);
           let obj = data[key];
+          // console.log(data[key]);
+
+          const cardContent = `
+              <div class="card">
+                <img src="${obj.photoURL}" class="card-img-top" />
+                <div class="card-body">
+                  <h5 class="card-title">${formatter.format(obj.price)}</h5>
+                  <h6 class="card-title">${obj.title}</h6>
+                  <p class="card-text">${obj.description}</p>
+                  <button id="${obj.key}" class="btn btn-danger">Delete</button>
+                </div>
+              </div>
+            `;
+
           const card = document.createElement('div');
-          card.setAttribute('class', 'card shadow rounded mb-5 col-md-6');
-          const cardContent = `<img src="${obj.photoURL}" class="card-img-top">
-                                <div class="card-body">
-                                    <h4 class="card-title mb-3">Rs ${
-                                      obj.price
-                                    }</h4>
-                                    <h5 class="card-subtitle mb-3">${
-                                      obj.title
-                                    }</h5>
-                                    <p class="card-text">${obj.description}</p>
-                                    <button type="button" id="${key}" class="btn btn-outline-danger">Delete</button>
-                                </div>`;
+          card.setAttribute('class', 'col-md-4 mb-4');
           card.innerHTML = cardContent;
           mainDiv.append(card);
-          let btn = document.getElementById(key);
+
+          let btn = document.getElementById(obj.key);
           btn.addEventListener('click', () => {
             deleteMyAd(obj, key);
           });
@@ -176,12 +189,14 @@ function saveAd(ad, btn) {
     alert('Login first to save this ad !');
     return false;
   }
-  if (btn.textContent === 'Save for later') {
+
+  if (btn.textContent === 'Add to favorites') {
     btn.textContent = 'Saved';
   } else if ((btn.textContent = 'Saved')) {
     alert('Already saved.');
     return false;
   }
+
   firebase
     .database()
     .ref(`users/${firebase.auth().currentUser.uid}/favorites/${ad.key}`)
@@ -198,6 +213,7 @@ function saveAd(ad, btn) {
 
 function searchAds() {
   const field = searchV.value;
+
   switch (field) {
     case '':
       return false;
@@ -208,6 +224,7 @@ function searchAds() {
     case '   ':
       return false;
   }
+
   firebase
     .database()
     .ref('ads/')
@@ -215,39 +232,48 @@ function searchAds() {
       'value',
       snapshot => {
         const data = snapshot.val();
+        // console.log(data);
+
         const values = Object.values(data);
         const arr = [];
-        let mainDiv = document.getElementById('data-box');
-        mainDiv.innerHTML = '';
+
         values.forEach(inObj => {
           let exArr = Object.values(inObj);
           exArr.forEach(gotObj => {
             arr.push(gotObj);
           });
         });
+
+        const formatter = new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD',
+          minimumFractionDigits: null
+        });
+
+        let mainDiv = document.getElementById('data-box');
+        mainDiv.innerHTML = '';
+
         arr.forEach(obj => {
           if (field.toLowerCase() === obj.title.toLowerCase()) {
+            const cardContent = `
+              <div class="card">
+                <img src="${obj.photoURL}" class="card-img-top" />
+                <div class="card-body">
+                  <h5 class="card-title">${formatter.format(obj.price)}</h5>
+                  <h6 class="card-title">${obj.title}</h6>
+                  <p class="card-text">${obj.description}</p>
+                  <button id="${
+                    obj.key
+                  }" class="btn btn-info">Add to favorites</button>
+                </div>
+              </div>
+            `;
+
             const card = document.createElement('div');
-            card.setAttribute('class', 'card shadow rounded mb-5 col-md-6');
-            const cardContent = `<img src="${
-              obj.photoURL
-            }" class="card-img-top">
-                                    <div class="card-body">
-                                        <h4 class="card-title mb-3">Rs ${
-                                          obj.price
-                                        }</h4>
-                                        <h5 class="card-subtitle mb-3">${
-                                          obj.title
-                                        }</h5>
-                                        <p class="card-text">${
-                                          obj.description
-                                        }</p>
-                                        <button type="button" id="${
-                                          obj.key
-                                        }" class="btn btn-outline-info">Save for later</button>
-                                    </div>`;
+            card.setAttribute('class', 'col-md-4 mb-4');
             card.innerHTML = cardContent;
             mainDiv.append(card);
+
             let btn = document.getElementById(obj.key);
             btn.addEventListener('click', () => {
               saveAd(obj, btn);
@@ -275,34 +301,44 @@ function favorites() {
       'value',
       snapshot => {
         const data = snapshot.val();
+
         let mainDiv = document.getElementById('data-box');
         mainDiv.innerHTML = '';
+
         if (!data) {
           mainDiv.className += ' display-4';
           mainDiv.textContent = 'You dont have any ads.';
           return false;
         }
+
+        const formatter = new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD',
+          minimumFractionDigits: null
+        });
+
         const keys = Object.keys(data);
         keys.forEach(key => {
-          // console.log(data[key]);
           let obj = data[key];
+          // console.log(data[key]);
+
+          const cardContent = `
+              <div class="card">
+                <img src="${obj.photoURL}" class="card-img-top" />
+                <div class="card-body">
+                  <h5 class="card-title">${formatter.format(obj.price)}</h5>
+                  <h6 class="card-title">${obj.title}</h6>
+                  <p class="card-text">${obj.description}</p>
+                  <button id="${obj.key}" class="btn btn-danger">Remove</button>
+                </div>
+              </div>
+            `;
+
           const card = document.createElement('div');
-          card.setAttribute('class', 'card shadow rounded mb-5 col-md-6');
-          const cardContent = `<img src="${obj.photoURL}" class="card-img-top">
-                                <div class="card-body">
-                                    <h4 class="card-title mb-3">Rs ${
-                                      obj.price
-                                    }</h4>
-                                    <h5 class="card-subtitle mb-3">${
-                                      obj.title
-                                    }</h5>
-                                    <p class="card-text">${obj.description}</p>
-                                    <button type="button" id="${
-                                      obj.key
-                                    }" class="btn btn-outline-danger">Unsave</button>
-                                </div>`;
+          card.setAttribute('class', 'col-md-4 mb-4');
           card.innerHTML = cardContent;
           mainDiv.append(card);
+
           let btn = document.getElementById(obj.key);
           btn.addEventListener('click', () => {
             deleteFavorites(obj);
@@ -316,10 +352,12 @@ function favorites() {
 }
 
 function deleteMyAd(ad, key) {
-  const res = prompt('Are you sure to delete this ad !\nIf not click cancel.');
-  if (res === null) {
+  const respone = confirm('Are you sure to delete this ad?');
+
+  if (!respone) {
     return false;
   }
+
   firebase
     .database()
     .ref(`users/${firebase.auth().currentUser.uid}/myAds/${key}`)
