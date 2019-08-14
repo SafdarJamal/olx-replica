@@ -50,70 +50,20 @@
       </nav>
     </header>
 
-    <main>
-      <div id="main-box" class="container col-md-4 mb-5">
-        <div class="card shadow-sm rounded">
-          <div>
-            <h1 class="card-header text-center">Log in</h1>
-          </div>
-          <div class="card-body">
-            <form id="form">
-              <div class="form-group">
-                <label for="email">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  class="form-control"
-                  autofocus
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <label for="password">Password</label>
-                <a href="./reset-password.html" class="float-right"
-                  >Forgot Password?</a
-                >
-                <input
-                  type="password"
-                  id="password"
-                  class="form-control"
-                  required
-                />
-                <button
-                  type="button"
-                  id="show-hide"
-                  class="btn btn-info btn-sm float-right mb-3"
-                >
-                  show
-                </button>
-              </div>
-              <button type="button" class="btn btn-primary btn-lg btn-block">
-                LOG ME IN
-              </button>
-              <div class="text-muted text-center m-1">OR</div>
-              <div>
-                <img class="fb-icon" src="../images/icons/fb.png" />
-                <button
-                  type="button"
-                  class="fb-btn btn btn-primary btn-lg btn-block"
-                >
-                  Continue with Facebook
-                </button>
-              </div>
-            </form>
-          </div>
-          <div class="card-footer text-muted text-center">
-            Don't have an account? <a href="./signup.html">Create One</a>
-          </div>
-        </div>
-      </div>
-    </main>
+    <div id="main-box">
+      <div id="data-box" class="container"></div>
+    </div>
 
     <!-- Bootstrap Dependencies -->
     <script src="../libraries/bootstrap-4.3.1/js/jquery-3.4.1.slim.min.js"></script>
     <script src="../libraries/bootstrap-4.3.1/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Custom JS -->
-    <script src="../scripts/app.js"></script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-database.js"></script>
+
+    <!-- App JS -->
+    <script src="../scripts/app.js" type="module"></script>
   </body>
 </html>

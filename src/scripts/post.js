@@ -95,7 +95,7 @@ function postAd() {
             } else {
               // Data saved successfully!
               console.log('Successfully Posted');
-              location.replace('http://localhost:8888/');
+              location.pathname = '/';
             }
           });
       })
