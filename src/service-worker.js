@@ -46,7 +46,7 @@ var filesToCache = [
 
 self.addEventListener('install', event => {
   // Perform install steps
-  console.log('SW installed');
+  //   console.log('SW installed');
 
   event.waitUntil(
     caches
@@ -63,36 +63,14 @@ self.addEventListener('install', event => {
   );
 });
 
-// self.addEventListener('fetch', event => {
-//   event.respondWith(
-//     (async function() {
-//       const cache = await caches.open(CACHE_NAME);
-//       const cachedResponse = await cache.match(event.request);
-//       if (cachedResponse) return cachedResponse;
-//       const networkResponse = await fetch(event.request);
-//       event.waitUntil(cache.put(event.request, networkResponse.clone()));
-//       return networkResponse;
-//     })()
-//   );
-// });
-
-// self.addEventListener('notificationclick', event => {
-//   const notification = event.notification;
-//   const primaryKey = notification.data.primaryKey;
-//   const action = event.action;
-//   // console.log(event);
-
-//   if (action === 'close') {
-//     notification.close();
-//   } else {
-//     clients.openWindow('http://localhost:8080');
-//     notification.close();
-//   }
-//   console.log('Closed notification: ' + primaryKey);
-// });
-
-// self.addEventListener('notificationclose', event => {
-//   const notification = event.notification;
-//   const primaryKey = notification.data.primaryKey;
-//   console.log('Closed notification: ' + primaryKey);
-// });
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request).then(response => {
+      // Cache hit - return response
+      if (response) {
+        return response;
+      }
+      return fetch(event.request);
+    })
+  );
+});
