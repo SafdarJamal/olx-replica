@@ -4,6 +4,12 @@ const searchCategory = document.getElementById('search-category');
 const searchV = document.getElementById('search-input');
 const searchB = document.getElementById('search-btn');
 
+const formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  minimumFractionDigits: null
+});
+
 function retrieveData() {
   let field = searchCategory.value;
 
@@ -37,12 +43,6 @@ function retrieveData() {
             });
           });
 
-          const formatter = new Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'USD',
-            minimumFractionDigits: null
-          });
-
           let mainDiv = document.getElementById('data-box');
           mainDiv.className = 'row';
           mainDiv.innerHTML = '';
@@ -73,12 +73,6 @@ function retrieveData() {
             });
           });
         } else {
-          const formatter = new Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'USD',
-            minimumFractionDigits: null
-          });
-
           let mainDiv = document.getElementById('data-box');
           mainDiv.className = 'row';
           mainDiv.innerHTML = '';
@@ -142,12 +136,6 @@ function myAds() {
           mainDiv.textContent = 'You dont have any ads.';
           return false;
         }
-
-        const formatter = new Intl.NumberFormat('en-US', {
-          style: 'currency',
-          currency: 'USD',
-          minimumFractionDigits: null
-        });
 
         const keys = Object.keys(data);
         keys.forEach(key => {
@@ -247,12 +235,6 @@ function searchAds() {
           });
         });
 
-        const formatter = new Intl.NumberFormat('en-US', {
-          style: 'currency',
-          currency: 'USD',
-          minimumFractionDigits: null
-        });
-
         let mainDiv = document.getElementById('data-box');
         mainDiv.innerHTML = '';
 
@@ -307,6 +289,7 @@ function favorites() {
       'value',
       snapshot => {
         const data = snapshot.val();
+        // console.log(data);
 
         let mainDiv = document.getElementById('data-box');
         mainDiv.innerHTML = '';
@@ -316,12 +299,6 @@ function favorites() {
           mainDiv.textContent = 'You dont have any ads.';
           return false;
         }
-
-        const formatter = new Intl.NumberFormat('en-US', {
-          style: 'currency',
-          currency: 'USD',
-          minimumFractionDigits: null
-        });
 
         const keys = Object.keys(data);
         keys.forEach(key => {
