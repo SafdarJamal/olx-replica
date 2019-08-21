@@ -18,7 +18,6 @@ var filesToCache = [
   './pages/my-ads.html',
   './pages/favorites.html',
   './scripts/app.js',
-  './scripts/config.js',
   './scripts/validate.js',
   './scripts/authenticate.js',
   './scripts/post.js',
