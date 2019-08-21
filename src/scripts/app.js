@@ -1,8 +1,5 @@
 'use strict';
 
-import { config } from './config.js';
-firebase.initializeApp(config);
-
 import * as validate from './validate.js';
 import * as authenticate from './authenticate.js';
 import * as post from './post.js';
