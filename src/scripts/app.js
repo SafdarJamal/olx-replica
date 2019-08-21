@@ -8,116 +8,100 @@ import * as authenticate from './authenticate.js';
 import * as post from './post.js';
 import * as retrieve from './retrieve.js';
 
-(function() {
-  console.log(firebase.auth().currentUser);
+if (location.pathname === '/pages/signup.html') {
+  validate.fName.oninput = validate.validateFName;
+  validate.lName.oninput = validate.validateLName;
+  validate.email.oninput = validate.validateEmail;
+  validate.password.oninput = validate.validatePassword;
+  validate.showHideEl.onclick = validate.showHide;
 
-  setTimeout(() => {
-    if (firebase.auth().currentUser) {
-      switch (location.pathname) {
-        case '/pages/signup.html':
-          location.pathname = '/';
-          break;
-        case '/pages/login.html':
-          location.pathname = '/';
-          break;
-        case '/pages/reset-password.html':
-          location.pathname = '/';
-          break;
-        case '/' || '/index.html':
-          validate.loginMenu.style.display = 'none';
-          validate.userMenu.style.display = 'block';
-          validate.userName.innerHTML = user.displayName;
-          if (user.photoURL) {
-            validate.profilePic.src = user.photoURL;
-            validate.profilePic.setAttribute('class', 'rounded-circle');
-          }
-          break;
-      }
-    } else {
-      switch (location.pathname) {
-        case '/pages/post.html':
-          location.pathname = '/pages/login.html';
-          break;
+  validate.signupB.addEventListener('click', () => {
+    authenticate.signUp(validate.validateSignupForm);
+  });
+  validate.fbLoginB.addEventListener('click', () => {
+    authenticate.fbLogin();
+  });
+} else if (location.pathname === '/pages/login.html') {
+  validate.email.oninput = validate.validateEmail;
+  validate.password.oninput = validate.validatePassword;
+  validate.showHideEl.onclick = validate.showHide;
 
-        case '/pages/my-ads.html':
-          location.pathname = '/pages/login.html';
-          break;
+  validate.loginB.addEventListener('click', () => {
+    authenticate.signIn(validate.validateLoginForm);
+  });
+  validate.fbLoginB.addEventListener('click', () => {
+    authenticate.fbLogin();
+  });
+} else if (location.pathname === '/pages/reset-password.html') {
+  validate.email.oninput = validate.validateEmail;
 
-        case '/pages/favorites.html':
-          location.pathname = '/pages/login.html';
-          break;
-
-        case '/' || '/index.html':
-          validate.userMenu.style.display = 'none';
-          validate.loginMenu.style.display = 'block';
-          document
-            .getElementById('start-selling')
-            .setAttribute('href', './pages/login.html');
-          break;
-      }
-    }
-  }, 300);
-})();
-
-switch (location.pathname) {
-  case '/pages/signup.html':
-    validate.fName.oninput = validate.validateFName;
-    validate.lName.oninput = validate.validateLName;
-    validate.email.oninput = validate.validateEmail;
-    validate.password.oninput = validate.validatePassword;
-    validate.showHideEl.onclick = validate.showHide;
-    validate.signupB.addEventListener('click', () => {
-      authenticate.signUp(validate.validateSignupForm);
-    });
-    validate.fbLoginB.addEventListener('click', () => {
-      authenticate.fbLogin();
-    });
-    break;
-
-  case '/pages/login.html':
-    validate.email.oninput = validate.validateEmail;
-    validate.password.oninput = validate.validatePassword;
-    validate.showHideEl.onclick = validate.showHide;
-    validate.loginB.addEventListener('click', () => {
-      authenticate.signIn(validate.validateLoginForm);
-    });
-    validate.fbLoginB.addEventListener('click', () => {
-      authenticate.fbLogin();
-    });
-    break;
-
-  case '/pages/reset-password.html':
-    validate.email.oninput = validate.validateEmail;
-    validate.passwordResetB.addEventListener('click', () => {
-      authenticate.resetPassword(validate.validateEmail);
-    });
-    break;
+  validate.passwordResetB.addEventListener('click', () => {
+    authenticate.resetPassword(validate.validateEmail);
+  });
 }
 
-switch (location.pathname) {
-  case '/' || '/index.html':
-    window.onload = retrieve.retrieveData;
-    retrieve.searchB.onclick = retrieve.searchAds;
-    retrieve.searchCategory.onchange = retrieve.retrieveData;
-    validate.logoutB.onclick = authenticate.logOut;
-    break;
+firebase.auth().onAuthStateChanged(user => {
+  if (user) {
+    // console.log(user);
 
-  case '/pages/post.html':
-    $(document).ready(function() {
-      bsCustomFileInput.init();
-    });
+    if (location.pathname === '/pages/signup.html') {
+      location.pathname = '/';
+    } else if (location.pathname === '/pages/login.html') {
+      location.pathname = '/';
+    } else if (location.pathname === '/pages/reset-password.html') {
+      location.pathname = '/';
+    } else if (
+      location.pathname === '/' ||
+      location.pathname === '/index.html'
+    ) {
+      validate.loginMenu.style.display = 'none';
+      validate.userMenu.style.display = 'block';
+      validate.userName.innerHTML = user.displayName;
 
-    post.adCategory.onchange = post.catChange;
-    post.postB.onclick = post.postAd;
-    break;
+      if (user.photoURL) {
+        validate.profilePic.src = user.photoURL;
+        validate.profilePic.setAttribute('class', 'rounded-circle');
+      }
+    }
+  } else {
+    // User is signed out.
 
-  case '/pages/my-ads.html':
-    window.onload = setTimeout(retrieve.myAds, 600);
-    break;
+    if (location.pathname === '/pages/post.html') {
+      location.pathname = '/pages/login.html';
+    } else if (location.pathname === '/pages/my-ads.html') {
+      location.pathname = '/pages/login.html';
+    } else if (location.pathname === '/pages/favorites.html') {
+      location.pathname = '/pages/login.html';
+    } else if (
+      location.pathname === '/' ||
+      location.pathname === '/index.html'
+    ) {
+      validate.userMenu.style.display = 'none';
+      validate.loginMenu.style.display = 'block';
+      document
+        .getElementById('start-selling')
+        .setAttribute('href', './pages/login.html');
+    }
+  }
+});
 
-  case '/pages/favorites.html':
-    window.onload = setTimeout(retrieve.favorites, 600);
-    break;
+if (location.pathname === '/' || location.pathname === '/index.html') {
+  window.onload = retrieve.retrieveData;
+
+  retrieve.searchB.onclick = retrieve.searchAds;
+  retrieve.searchCategory.onchange = retrieve.retrieveData;
+  validate.logoutB.onclick = authenticate.logOut;
+} else if (location.pathname === '/pages/post.html') {
+  $(document).ready(function() {
+    bsCustomFileInput.init();
+  });
+
+  post.adCategory.onchange = post.catChange;
+  post.postB.onclick = post.postAd;
+} else if (location.pathname === '/pages/my-ads.html') {
+  window.onload = setTimeout(retrieve.myAds, 900);
+} else if (location.pathname === '/pages/favorites.html') {
+  window.onload = setTimeout(retrieve.favorites, 900);
 }
 
 if ('serviceWorker' in navigator) {
