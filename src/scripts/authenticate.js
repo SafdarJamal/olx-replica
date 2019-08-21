@@ -39,6 +39,7 @@ function signUp(validateForm) {
         .catch(error => {
           console.log(error);
         });
+
       const userData = {
         firstName: fName.value,
         lastName: lName.value,
@@ -47,6 +48,7 @@ function signUp(validateForm) {
         providerId: user.providerData[0].providerId,
         providerSpecificUId: user.providerData[0].uid
       };
+
       firebase
         .database()
         .ref(`users/${user.uid}`)

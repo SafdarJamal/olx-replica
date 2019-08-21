@@ -8,60 +8,56 @@ import * as authenticate from './authenticate.js';
 import * as post from './post.js';
 import * as retrieve from './retrieve.js';
 
-firebase.auth().onAuthStateChanged(user => {
-  if (user) {
-    // console.log(user);
+(function() {
+  console.log(firebase.auth().currentUser);
 
-    switch (location.pathname) {
-      case '/pages/signup.html':
-        location.pathname = '/';
-        break;
+  setTimeout(() => {
+    if (firebase.auth().currentUser) {
+      switch (location.pathname) {
+        case '/pages/signup.html':
+          location.pathname = '/';
+          break;
+        case '/pages/login.html':
+          location.pathname = '/';
+          break;
+        case '/pages/reset-password.html':
+          location.pathname = '/';
+          break;
+        case '/' || '/index.html':
+          validate.loginMenu.style.display = 'none';
+          validate.userMenu.style.display = 'block';
+          validate.userName.innerHTML = user.displayName;
+          if (user.photoURL) {
+            validate.profilePic.src = user.photoURL;
+            validate.profilePic.setAttribute('class', 'rounded-circle');
+          }
+          break;
+      }
+    } else {
+      switch (location.pathname) {
+        case '/pages/post.html':
+          location.pathname = '/pages/login.html';
+          break;
 
-      case '/pages/login.html':
-        location.pathname = '/';
-        break;
+        case '/pages/my-ads.html':
+          location.pathname = '/pages/login.html';
+          break;
 
-      case '/pages/reset-password.html':
-        location.pathname = '/';
-        break;
+        case '/pages/favorites.html':
+          location.pathname = '/pages/login.html';
+          break;
 
-      case '/' || '/index.html':
-        validate.loginMenu.style.display = 'none';
-        validate.userMenu.style.display = 'block';
-        validate.userName.innerHTML = user.displayName;
-
-        if (user.photoURL) {
-          validate.profilePic.src = user.photoURL;
-          validate.profilePic.setAttribute('class', 'rounded-circle');
-        }
-        break;
+        case '/' || '/index.html':
+          validate.userMenu.style.display = 'none';
+          validate.loginMenu.style.display = 'block';
+          document
+            .getElementById('start-selling')
+            .setAttribute('href', './pages/login.html');
+          break;
+      }
     }
-  } else {
-    // User is signed out.
-
-    switch (location.pathname) {
-      case '/pages/post.html':
-        location.pathname = '/pages/login.html';
-        break;
-
-      case '/pages/my-ads.html':
-        location.pathname = '/pages/login.html';
-        break;
-
-      case '/pages/favorites.html':
-        location.pathname = '/pages/login.html';
-        break;
-
-      case '/' || '/index.html':
-        validate.userMenu.style.display = 'none';
-        validate.loginMenu.style.display = 'block';
-        document
-          .getElementById('start-selling')
-          .setAttribute('href', './pages/login.html');
-        break;
-    }
-  }
-});
+  }, 300);
+})();
 
 switch (location.pathname) {
   case '/pages/signup.html':
