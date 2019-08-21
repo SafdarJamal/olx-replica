@@ -8,41 +8,6 @@ import * as authenticate from './authenticate.js';
 import * as post from './post.js';
 import * as retrieve from './retrieve.js';
 
-switch (location.pathname) {
-  case '/pages/signup.html':
-    validate.fName.oninput = validate.validateFName;
-    validate.lName.oninput = validate.validateLName;
-    validate.email.oninput = validate.validateEmail;
-    validate.password.oninput = validate.validatePassword;
-    validate.showHideEl.onclick = validate.showHide;
-    validate.signupB.addEventListener('click', () => {
-      authenticate.signUp(validate.validateSignupForm);
-    });
-    validate.fbLoginB.addEventListener('click', () => {
-      authenticate.fbLogin();
-    });
-    break;
-
-  case '/pages/login.html':
-    validate.email.oninput = validate.validateEmail;
-    validate.password.oninput = validate.validatePassword;
-    validate.showHideEl.onclick = validate.showHide;
-    validate.loginB.addEventListener('click', () => {
-      authenticate.signIn(validate.validateLoginForm);
-    });
-    validate.fbLoginB.addEventListener('click', () => {
-      authenticate.fbLogin();
-    });
-    break;
-
-  case '/pages/reset-password.html':
-    validate.email.oninput = validate.validateEmail;
-    validate.passwordResetB.addEventListener('click', () => {
-      authenticate.resetPassword(validate.validateEmail);
-    });
-    break;
-}
-
 firebase.auth().onAuthStateChanged(user => {
   if (user) {
     // console.log(user);
@@ -97,6 +62,41 @@ firebase.auth().onAuthStateChanged(user => {
     }
   }
 });
+
+switch (location.pathname) {
+  case '/pages/signup.html':
+    validate.fName.oninput = validate.validateFName;
+    validate.lName.oninput = validate.validateLName;
+    validate.email.oninput = validate.validateEmail;
+    validate.password.oninput = validate.validatePassword;
+    validate.showHideEl.onclick = validate.showHide;
+    validate.signupB.addEventListener('click', () => {
+      authenticate.signUp(validate.validateSignupForm);
+    });
+    validate.fbLoginB.addEventListener('click', () => {
+      authenticate.fbLogin();
+    });
+    break;
+
+  case '/pages/login.html':
+    validate.email.oninput = validate.validateEmail;
+    validate.password.oninput = validate.validatePassword;
+    validate.showHideEl.onclick = validate.showHide;
+    validate.loginB.addEventListener('click', () => {
+      authenticate.signIn(validate.validateLoginForm);
+    });
+    validate.fbLoginB.addEventListener('click', () => {
+      authenticate.fbLogin();
+    });
+    break;
+
+  case '/pages/reset-password.html':
+    validate.email.oninput = validate.validateEmail;
+    validate.passwordResetB.addEventListener('click', () => {
+      authenticate.resetPassword(validate.validateEmail);
+    });
+    break;
+}
 
 switch (location.pathname) {
   case '/' || '/index.html':
