@@ -8,7 +8,7 @@ A OLX Replica Progressive Web App
 - CSS
 - Bootstrap
 - JavaScript
-- PWA
+- PWA (All Check Passed)
 - Firebase
 
 ## License
