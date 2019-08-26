@@ -2,7 +2,7 @@
 
 A OLX Replica Progressive Web App
 
-## Tech
+## Tech Stack
 
 - HTML
 - CSS
