@@ -8,7 +8,7 @@ A OLX Replica Progressive Web App
 - CSS
 - Bootstrap
 - JavaScript
-- PWA (All Check Passed)
+- PWA (Fast and reliable: 3/3, Installable: 3/3, PWA Optimized: 7/7)
 - Firebase
 
 ## License
