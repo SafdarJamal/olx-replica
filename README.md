@@ -17,11 +17,9 @@ To get a local copy of the code, clone it using git:
 
 ```
 git clone https://github.com/SafdarJamal/olx-replica.git
-
-# step into local repo and start hacking
 cd olx-replica
 ```
 
 ## License
 
-This App is an open source software [licensed as MIT](https://github.com/safdarjamal/olx-replica/blob/master/LICENSE).
+This is an open source software [licensed as MIT](https://github.com/safdarjamal/olx-replica/blob/master/LICENSE).
