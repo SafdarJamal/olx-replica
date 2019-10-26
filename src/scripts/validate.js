@@ -35,27 +35,32 @@ function validateFName() {
   const regex = /^[A-Za-z]?([\ ]?[A-Za-z])+$/;
   const field = fName.value;
   let flag = true;
+
   if (field === '') {
     flag = false;
     fName.className = 'form-control negative';
     f.innerHTML = 'Please fill out this field !';
     f.className = 'feedback now-invalid';
+
     return false;
   } else if (field.indexOf(' ') === 0) {
     flag = false;
     fName.className = 'form-control negative';
     f.innerHTML = 'Invalid username !';
     f.className = 'feedback now-invalid';
+
     return false;
   } else if (!field.match(regex)) {
     flag = false;
     fName.className = 'form-control negative';
     f.innerHTML = 'Invalid username !';
     f.className = 'feedback now-invalid';
+
     return false;
   } else {
     f.className = 'feedback';
     fName.className = 'form-control positive';
+
     return true;
   }
 }
@@ -64,27 +69,32 @@ function validateLName() {
   const regex = /^[A-Za-z]?([\ ]?[A-Za-z])+$/;
   const field = lName.value;
   let flag = true;
+
   if (field === '') {
     flag = false;
     lName.className = 'form-control negative';
     l.innerHTML = 'Please fill out this field !';
     l.className = 'feedback now-invalid';
+
     return false;
   } else if (field.indexOf(' ') === 0) {
     flag = false;
     lName.className = 'form-control negative';
     l.innerHTML = 'Invalid username !';
     l.className = 'feedback now-invalid';
+
     return false;
   } else if (!field.match(regex)) {
     flag = false;
     lName.className = 'form-control negative';
     l.innerHTML = 'Invalid username !';
     l.className = 'feedback now-invalid';
+
     return false;
   } else {
     l.className = 'feedback';
     lName.className = 'form-control positive';
+
     return true;
   }
 }
@@ -93,21 +103,26 @@ function validateEmail() {
   const regex = /^\w+([\.-]?\w+)*@[a-zA-Z0-9]([\.-]?[a-zA-Z0-9])*(\.[a-zA-Z]{2,4})+$/;
   const field = email.value;
   let flag = true;
+
   if (!field.match(regex)) {
     flag = false;
     email.className = 'form-control negative';
+
     if (field === '') {
       e.innerHTML = 'Please fill out this field !';
       e.className = 'feedback now-invalid';
+
       return false;
     } else {
       e.innerHTML = 'Invalid Email address !';
       e.className = 'feedback now-invalid';
+
       return false;
     }
   } else {
     e.className = 'feedback';
     email.className = 'form-control positive';
+
     return true;
   }
 }
@@ -116,38 +131,46 @@ function validatePassword() {
   const regex = /^[a-zA-Z0-9.-_#*+/$@%,-?!]([\.]?[a-zA-Z0-9.-_#*+/$@%,-?!]{7,63})$/;
   const field = password.value;
   let flag = true;
+
   if (!field.match(regex)) {
     flag = false;
+
     if (field === '') {
       password.className = 'form-control negative';
       p.innerHTML = 'Please fill out this field !';
       p.className = 'feedback now-invalid';
+
       return false;
     } else if (field.indexOf(' ') !== -1) {
       password.className = 'form-control negative';
       p.innerHTML = 'Can not contain spaces !';
       p.className = 'feedback now-invalid';
+
       return false;
     } else if (field.length < 8) {
       password.className = 'form-control negative';
       p.innerHTML = 'At least 8 characters long !';
       p.className = 'feedback now-invalid';
+
       return false;
     }
+
     password.className = 'form-control negative';
     p.innerHTML = 'Invalid characters !';
     p.className = 'feedback now-invalid';
+
     return false;
   } else {
     p.className = 'feedback';
     password.className = 'form-control positive';
+
     return true;
   }
 }
 
 function showHide() {
   const fieldAtt = password.getAttribute('type');
-  // console.log(fieldAtt);
+
   if (fieldAtt === 'password') {
     password.setAttribute('type', 'text');
     showHideEl.innerHTML = 'hide';
