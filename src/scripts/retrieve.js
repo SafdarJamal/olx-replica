@@ -1,8 +1,7 @@
 'use strict';
 
 const searchCategory = document.getElementById('search-category');
-const searchV = document.getElementById('search-input');
-const searchB = document.getElementById('search-btn');
+const searchInput = document.getElementById('search-input');
 
 const formatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
@@ -203,7 +202,7 @@ function saveAd(ad, btn) {
 }
 
 function searchAds() {
-  const field = searchV.value;
+  const field = searchInput.value;
 
   switch (field) {
     case '':
@@ -362,5 +361,5 @@ function deleteFavorites(ad) {
     .remove();
 }
 
-export { searchCategory, searchV, searchB };
+export { searchCategory, searchInput };
 export { retrieveData, myAds, searchAds, favorites };

@@ -11,7 +11,6 @@ if (location.pathname === '/pages/signup.html') {
   validate.email.oninput = validate.validateEmail;
   validate.password.oninput = validate.validatePassword;
   validate.showHideEl.onclick = validate.showHide;
-
   validate.signupB.addEventListener('click', () => {
     authenticate.signUp(validate.validateSignupForm);
   });
@@ -22,7 +21,6 @@ if (location.pathname === '/pages/signup.html') {
   validate.email.oninput = validate.validateEmail;
   validate.password.oninput = validate.validatePassword;
   validate.showHideEl.onclick = validate.showHide;
-
   validate.loginB.addEventListener('click', () => {
     authenticate.signIn(validate.validateLoginForm);
   });
@@ -31,7 +29,6 @@ if (location.pathname === '/pages/signup.html') {
   });
 } else if (location.pathname === '/pages/reset-password.html') {
   validate.email.oninput = validate.validateEmail;
-
   validate.passwordResetB.addEventListener('click', () => {
     authenticate.resetPassword(validate.validateEmail);
   });
@@ -85,8 +82,9 @@ firebase.auth().onAuthStateChanged(user => {
 if (location.pathname === '/' || location.pathname === '/index.html') {
   window.onload = retrieve.retrieveData;
 
-  retrieve.searchB.onclick = retrieve.searchAds;
   retrieve.searchCategory.onchange = retrieve.retrieveData;
+  retrieve.searchInput.onsearch = retrieve.searchAds;
+
   validate.logoutB.onclick = authenticate.logOut;
 } else if (location.pathname === '/pages/post.html') {
   $(document).ready(function() {

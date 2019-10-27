@@ -156,33 +156,9 @@
         ></div>
 
         <div class="jumbotron shadow-sm">
-          <div class="input-group mb-4">
-            <input
-              id="search-input"
-              type="text"
-              style="border-radius: 50px"
-              class="form-control form-control-lg"
-              placeholder="Find Cars, Mobile Phones and more..."
-              aria-label="Recipient's username"
-              aria-describedby="button-addon2"
-            />
-            <div class="input-group-append ml-2">
-              <button
-                id="search-btn"
-                style="border-radius: 50px"
-                class="btn btn-info"
-                type="button"
-                id="button-addon2"
-              >
-                Search
-              </button>
-            </div>
-          </div>
-
           <select
             id="search-category"
-            style="border-radius: 50px"
-            class="form-control form-control-lg"
+            class="form-control form-control-lg mb-4"
           >
             <option value="all" selected disabled>BROWSE BY CATEGORY</option>
             <option value="all">All Categories</option>
@@ -194,6 +170,17 @@
             <option value="fashion">Fashion & Beauty</option>
             <option value="booksAndSports">Books & Sports</option>
           </select>
+
+          <div class="input-group mb-4">
+            <input
+              id="search-input"
+              type="search"
+              class="form-control form-control-lg"
+              placeholder="Find Cars, Mobile Phones and more..."
+              aria-label="Search Cars, Mobile Phones and more."
+              aria-describedby="search-input"
+            />
+          </div>
 
           <hr class="my-4" />
           <p>
@@ -215,8 +202,7 @@
       <div id="data-box" class="row"></div>
     </div>
 
-    <br /><br /><br />
-    <br /><br /><br />
+    <br /><br />
 
     <!-- Bootstrap Dependencies -->
     <script src="./libraries/bootstrap-4.3.1/js/jquery-3.4.1.slim.min.js"></script>

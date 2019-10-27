@@ -38,30 +38,33 @@ function validateFName() {
 
   if (field === '') {
     flag = false;
+
     fName.className = 'form-control negative';
     f.innerHTML = 'Please fill out this field !';
     f.className = 'feedback now-invalid';
 
-    return false;
+    return flag;
   } else if (field.indexOf(' ') === 0) {
     flag = false;
+
     fName.className = 'form-control negative';
     f.innerHTML = 'Invalid username !';
     f.className = 'feedback now-invalid';
 
-    return false;
+    return flag;
   } else if (!field.match(regex)) {
     flag = false;
+
     fName.className = 'form-control negative';
     f.innerHTML = 'Invalid username !';
     f.className = 'feedback now-invalid';
 
-    return false;
+    return flag;
   } else {
     f.className = 'feedback';
     fName.className = 'form-control positive';
 
-    return true;
+    return flag;
   }
 }
 
@@ -72,30 +75,33 @@ function validateLName() {
 
   if (field === '') {
     flag = false;
+
     lName.className = 'form-control negative';
     l.innerHTML = 'Please fill out this field !';
     l.className = 'feedback now-invalid';
 
-    return false;
+    return flag;
   } else if (field.indexOf(' ') === 0) {
     flag = false;
+
     lName.className = 'form-control negative';
     l.innerHTML = 'Invalid username !';
     l.className = 'feedback now-invalid';
 
-    return false;
+    return flag;
   } else if (!field.match(regex)) {
     flag = false;
+
     lName.className = 'form-control negative';
     l.innerHTML = 'Invalid username !';
     l.className = 'feedback now-invalid';
 
-    return false;
+    return flag;
   } else {
     l.className = 'feedback';
     lName.className = 'form-control positive';
 
-    return true;
+    return flag;
   }
 }
 
@@ -106,24 +112,25 @@ function validateEmail() {
 
   if (!field.match(regex)) {
     flag = false;
+
     email.className = 'form-control negative';
 
     if (field === '') {
       e.innerHTML = 'Please fill out this field !';
       e.className = 'feedback now-invalid';
 
-      return false;
+      return flag;
     } else {
       e.innerHTML = 'Invalid Email address !';
       e.className = 'feedback now-invalid';
 
-      return false;
+      return flag;
     }
   } else {
     e.className = 'feedback';
     email.className = 'form-control positive';
 
-    return true;
+    return flag;
   }
 }
 
@@ -140,31 +147,31 @@ function validatePassword() {
       p.innerHTML = 'Please fill out this field !';
       p.className = 'feedback now-invalid';
 
-      return false;
+      return flag;
     } else if (field.indexOf(' ') !== -1) {
       password.className = 'form-control negative';
       p.innerHTML = 'Can not contain spaces !';
       p.className = 'feedback now-invalid';
 
-      return false;
+      return flag;
     } else if (field.length < 8) {
       password.className = 'form-control negative';
       p.innerHTML = 'At least 8 characters long !';
       p.className = 'feedback now-invalid';
 
-      return false;
+      return flag;
     }
 
     password.className = 'form-control negative';
     p.innerHTML = 'Invalid characters !';
     p.className = 'feedback now-invalid';
 
-    return false;
+    return flag;
   } else {
     p.className = 'feedback';
     password.className = 'form-control positive';
 
-    return true;
+    return flag;
   }
 }
 
@@ -181,18 +188,18 @@ function showHide() {
 }
 
 function validateSignupForm() {
-  const a = validateFName();
-  const b = validateLName();
-  const c = validateEmail();
-  const d = validatePassword();
+  const fName = validateFName();
+  const lName = validateLName();
+  const email = validateEmail();
+  const password = validatePassword();
 
-  if (a === false) {
+  if (fName === false) {
     return false;
-  } else if (b === false) {
+  } else if (lName === false) {
     return false;
-  } else if (c === false) {
+  } else if (email === false) {
     return false;
-  } else if (d === false) {
+  } else if (password === false) {
     return false;
   } else {
     return true;
@@ -200,12 +207,12 @@ function validateSignupForm() {
 }
 
 function validateLoginForm() {
-  const a = validateEmail();
-  const b = validatePassword();
+  const email = validateEmail();
+  const password = validatePassword();
 
-  if (a === false) {
+  if (email === false) {
     return false;
-  } else if (b === false) {
+  } else if (password === false) {
     return false;
   } else {
     return true;
@@ -231,6 +238,7 @@ export {
   logoutB,
   authError
 };
+
 export {
   validateFName,
   validateLName,
