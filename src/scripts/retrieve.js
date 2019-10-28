@@ -2,6 +2,7 @@
 
 const searchCategory = document.getElementById('search-category');
 const searchInput = document.getElementById('search-input');
+const searchButton = document.getElementById('search-button');
 
 const formatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
@@ -361,5 +362,5 @@ function deleteFavorites(ad) {
     .remove();
 }
 
-export { searchCategory, searchInput };
+export { searchCategory, searchInput, searchButton };
 export { retrieveData, myAds, searchAds, favorites };

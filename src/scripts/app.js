@@ -84,6 +84,7 @@ if (location.pathname === '/' || location.pathname === '/index.html') {
 
   retrieve.searchCategory.onchange = retrieve.retrieveData;
   retrieve.searchInput.onsearch = retrieve.searchAds;
+  retrieve.searchButton.onclick = retrieve.searchAds;
 
   validate.logoutB.onclick = authenticate.logOut;
 } else if (location.pathname === '/pages/post.html') {
